@@ -4,9 +4,11 @@ function fakeCheck() {
   if (!box.checked) {
     box.checked = true;
 
-    // mimic the "loading" delay
+    // mimic Google reCAPTCHA delay
     setTimeout(() => {
-      alert("Verification complete ✔️");
+      alert("✔ Verification complete (fake reCAPTCHA)");
+      // call next level or game logic here
+      console.log("Player can now continue to the next level!");
     }, 500);
   }
 }
