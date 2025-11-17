@@ -37,6 +37,12 @@ h1 {
   border-radius: 3px;
   background: white;
   position: relative;
+  transition: all 0.3s ease;
+}
+
+.checkbox.checked {
+  background: #4285f4;
+  border-color: #4285f4;
 }
 
 .checkbox.checked::after {
@@ -95,9 +101,21 @@ h1 {
   font-size: 20px;
   border-radius: 5px;
   user-select: none;
+  transition: 0.3s;
 }
 
 .level-grid div.selected {
   background: #4285f4;
   color: white;
+  transform: scale(1.1);
+}
+
+.map-challenge {
+  width: 300px;
+  height: 200px;
+  background: url('https://i.imgur.com/fakeMap.png') no-repeat center center;
+  background-size: cover;
+  margin: 20px auto;
+  position: relative;
+  cursor: pointer;
 }
