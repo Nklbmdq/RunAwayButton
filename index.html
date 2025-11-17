@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>Useless Button Playground</title>
+    <style>
+        body {
+            font-family: 'Segoe UI', sans-serif;
+            background: linear-gradient(135deg, #ffdee9, #b5fffc);
+            margin: 0;
+            padding: 40px;
+            text-align: center;
+        }
+
+        h1 {
+            font-size: 40px;
+            margin-bottom: 20px;
+        }
+
+        .btn-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 25px;
+            max-width: 900px;
+            margin: auto;
+        }
+
+        button {
+            padding: 15px 20px;
+            font-size: 18px;
+            border: none;
+            border-radius: 12px;
+            background: white;
+            cursor: pointer;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.15);
+            transition: 0.25s;
+        }
+
+        button:hover {
+            transform: scale(1.08);
+            box-shadow: 0 6px 25px rgba(0,0,0,0.2);
+        }
+
+        /* Run away button special */
+        #runaway {
+            position: relative;
+        }
+    </style>
+</head>
+<body>
+
+<h1>🌈 Useless Button Playground</h1>
+
+<div class="btn-grid">
+
+    <!-- 1. Run Away Button -->
+    <button id="runaway">Try to click me 😈</button>
+
+    <!-- 2. Confetti Button -->
+    <button id="confetti">🎉 Confetti!</button>
+
+    <!-- 3. Shrink Button -->
+    <button id="shrink">I get smaller 👇</button>
+
+    <!-- 4. Spin Button -->
+    <button id="spin">I go WHEEEE 🔄</button>
+
+    <!-- 5. Fake Loading -->
+    <button id="loading">Loading... ⏳</button>
+
+</div>
+
+<script>
+    /* RUN AWAY BUTTON */
+    const runBtn = document.getElementById("runaway");
+    runBtn.addEventListener("mouseover", () => {
+        runBtn.style.position = "absolute";
+        runBtn.style.left = Math.random() * (window.innerWidth - 200) + "px";
+        runBtn.style.top = Math.random() * (window.innerHeight - 100) + "px";
+    });
+
+    /* CONFETTI BUTTON (simple emojis) */
+    document.getElementById("confetti").onclick = () => {
+        for (let i = 0; i < 25; i++) {
+            let c = document.createElement("div");
+            c.innerHTML = "🎉";
+            c.style.position = "fixed";
+            c.style.left = Math.random() * window.innerWidth + "px";
+            c.style.top = "-20px";
+            c.style.fontSize = "30px";
+            c.style.animation = "fall 2s linear";
+            document.body.appendChild(c);
+            setTimeout(() => c.remove(), 2000);
+        }
+    };
+
+    /* SHRINK BUTTON */
+    document.getElementById("shrink").onclick = function() {
+        this.style.transform = "scale(0.7)";
+    };
+
+    /* SPIN BUTTON */
+    document.getElementById("spin").onclick = function() {
+        this.style.transition = "transform 0.8s ease";
+        this.style.transform = "rotate(360deg)";
+    };
+
+    /* LOADING BUTTON */
+    document.getElementById("loading").onclick = function() {
+        const original = this.innerText;
+        this.innerText = "Processing...";
+        setTimeout(() => {
+            this.innerText = original + " (fake)";
+        }, 1200);
+    };
+
+    /* Simple falling animation */
+    const style = document.createElement("style");
+    style.innerHTML = `
+        @keyframes fall {
+            from { transform: translateY(0); }
+            to { transform: translateY(120vh); }
+        }
+    `;
+    document.head.appendChild(style);
+</script>
+
+</body>
+</html>
